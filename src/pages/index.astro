@@ -1,104 +1,109 @@
----
-const title = "SAM ENTERPRISES LLC | New Orleans";
----
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="SAM ENTERPRISES LLC provides renovation, repairs, fencing, painting, tile, drywall, and welding in the New Orleans area."
-    />
-    <title>{title}</title>
-    <style>
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        color: #18232d;
-        background: #f5f3ee;
-        line-height: 1.6;
-      }
-      header {
-        padding: 22px 6%;
-        background: #142b38;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .brand { font-weight: 800; letter-spacing: 1px; }
-      nav { display: flex; gap: 22px; }
-      nav a { color: white; text-decoration: none; }
-      .hero {
-        background: #142b38;
-        color: white;
-        padding: 85px 6% 95px;
-      }
-      .wrap { max-width: 1100px; margin: auto; }
-      .eyebrow {
-        color: #edb85f;
-        font-weight: bold;
-        letter-spacing: 2px;
-        font-size: 13px;
-        text-transform: uppercase;
-      }
-      h1 {
-        font-size: clamp(38px, 7vw, 76px);
-        line-height: 1.08;
-        max-width: 850px;
-        margin: 22px 0;
-      }
-      .hero p {
-        color: #d8e1e6;
-        max-width: 620px;
-        font-size: 19px;
-      }
-      .button {
-        display: inline-block;
-        background: #edb85f;
-        color: #142b38;
-        padding: 14px 24px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        margin-top: 18px;
-      }
-      section { padding: 65px 6%; }
-      h2 {
-        font-size: clamp(28px, 4vw, 40px);
-        line-height: 1.2;
-        margin: 0 0 20px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-        margin-top: 30px;
-      }
-      .card {
-        background: white;
-        border: 1px solid #e1ded6;
-        border-radius: 8px;
-        padding: 26px;
-      }
-      .card h3 { margin: 0 0 10px; font-size: 20px; }
-      .card p { margin: 0; color: #52616a; }
-      .about { background: #e9e6de; }
-      .about p { max-width: 760px; }
-      footer {
-        background: #142b38;
-        color: #d8e1e6;
-        padding: 28px 6%;
-        font-size: 14px;
-      }
-      a:focus-visible {
-        outline: 3px solid #edb85f;
-        outline-offset: 5px;
-      }
-      @
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SAM ENTERPRISES LLC provides renovation, repairs, fencing, painting, tile, drywall, and welding in the New Orleans area." />
+  <title>SAM ENTERPRISES LLC | New Orleans</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #18232d;
+      background: #f5f3ee;
+      line-height: 1.6;
+    }
+    header { background: #142b38; color: white; padding: 24px 6%; }
+    .brand { font-size: 22px; font-weight: bold; }
+    .tagline { color: #d8e1e6; margin: 4px 0 0; }
+    main { max-width: 1150px; margin: auto; }
+    section { padding: 56px 6%; }
+    .hero { padding-top: 76px; padding-bottom: 76px; }
+    .label { color: #715326; font-weight: bold; letter-spacing: 2px; }
+    h1 { font-size: clamp(34px, 7vw, 62px); line-height: 1.1; margin: 18px 0 24px; }
+    h2 { font-size: 30px; line-height: 1.2; margin-top: 0; }
+    h3 { margin: 0 0 10px; }
+    p { max-width: 720px; }
+    .intro { font-size: 20px; color: #52616a; }
+    .button {
+      display: inline-block;
+      background: #142b38;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .card { background: white; border: 1px solid #e1ded6; border-radius: 8px; padding: 26px; }
+    .card p { margin: 0; color: #52616a; }
+    .about { background: #e9e6de; border-radius: 8px; }
+    footer { background: #142b38; color: #d8e1e6; padding: 28px 6%; margin-top: 40px; }
+    a:focus-visible { outline: 3px solid #b88739; outline-offset: 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">SAM ENTERPRISES LLC</div>
+    <p class="tagline">Renovations &amp; Repairs · New Orleans</p>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="label">BUILT WITH CARE.</div>
+      <h1>Your next project.<br />Our hands-on approach.</h1>
+      <p class="intro">From everyday repairs to property improvements, SAM ENTERPRISES LLC helps bring your project to life throughout the New Orleans area.</p>
+      <a class="button" href="#services">Explore Our Services</a>
+    </section>
+    <section id="services">
+      <h2>Work we do</h2>
+      <p>Practical solutions for your home and property.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Renovations &amp; Repairs</h3>
+          <p>Interior improvements, carpentry, framing, and general property repairs.</p>
+        </article>
+        <article class="card">
+          <h3>Fences &amp; Gates</h3>
+          <p>Wood and metal fencing, gate installation, and fence repairs.</p>
+        </article>
+        <article class="card">
+          <h3>Painting &amp; Drywall</h3>
+          <p>Interior and exterior painting, drywall installation, patching, and finishing.</p>
+        </article>
+        <article class="card">
+          <h3>Tile &amp; Flooring</h3>
+          <p>Ceramic tile, vinyl flooring, and repairs to refresh your space.</p>
+        </article>
+        <article class="card">
+          <h3>Exterior Improvements</h3>
+          <p>Siding, fascia repairs, deck repairs, and exterior maintenance.</p>
+        </article>
+        <article class="card">
+          <h3>Welding &amp; Metal Repairs</h3>
+          <p>Welding and repairs for metal gates, fences, and other property features.</p>
+        </article>
+      </div>
+    </section>
+    <section class="about">
+      <h2>Local work. Personal attention.</h2>
+      <p>SAM ENTERPRISES LLC is led by Steven Murillo and serves the New Orleans area with hands-on renovation and repair services.</p>
+      <p>We focus on understanding your project, explaining the scope of work, and paying attention to the details.</p>
+    </section>
+    <section>
+      <h2>Serving the New Orleans area</h2>
+      <p>Have a repair or improvement in mind? Prepare a few photos and a short description of your project to help us discuss the work you need.</p>
+    </section>
+  </main>
+  <footer>
+    <strong>SAM ENTERPRISES LLC</strong><br />
+    Renovations &amp; Repairs · New Orleans, Louisiana
+  </footer>
+</body>
+</html>
