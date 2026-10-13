@@ -1,50 +1,104 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const title = "SAM ENTERPRISES LLC | New Orleans";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="SAM ENTERPRISES LLC provides renovation, repairs, fencing, painting, tile, drywall, and welding in the New Orleans area."
+    />
+    <title>{title}</title>
+    <style>
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #18232d;
+        background: #f5f3ee;
+        line-height: 1.6;
+      }
+      header {
+        padding: 22px 6%;
+        background: #142b38;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .brand { font-weight: 800; letter-spacing: 1px; }
+      nav { display: flex; gap: 22px; }
+      nav a { color: white; text-decoration: none; }
+      .hero {
+        background: #142b38;
+        color: white;
+        padding: 85px 6% 95px;
+      }
+      .wrap { max-width: 1100px; margin: auto; }
+      .eyebrow {
+        color: #edb85f;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(38px, 7vw, 76px);
+        line-height: 1.08;
+        max-width: 850px;
+        margin: 22px 0;
+      }
+      .hero p {
+        color: #d8e1e6;
+        max-width: 620px;
+        font-size: 19px;
+      }
+      .button {
+        display: inline-block;
+        background: #edb85f;
+        color: #142b38;
+        padding: 14px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 18px;
+      }
+      section { padding: 65px 6%; }
+      h2 {
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.2;
+        margin: 0 0 20px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 30px;
+      }
+      .card {
+        background: white;
+        border: 1px solid #e1ded6;
+        border-radius: 8px;
+        padding: 26px;
+      }
+      .card h3 { margin: 0 0 10px; font-size: 20px; }
+      .card p { margin: 0; color: #52616a; }
+      .about { background: #e9e6de; }
+      .about p { max-width: 760px; }
+      footer {
+        background: #142b38;
+        color: #d8e1e6;
+        padding: 28px 6%;
+        font-size: 14px;
+      }
+      a:focus-visible {
+        outline: 3px solid #edb85f;
+        outline-offset: 5px;
+      }
+      @
