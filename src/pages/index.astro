@@ -91,18 +91,92 @@
       </div>
     </section>
 
-    <section id="gallery">
-      <h2>Our Work</h2>
-      <p>A look at our projects, including fencing, gates, and exterior improvements.</p>
-      <p class="gallery-note">Tap any photo to view it larger.</p>
-      <div class="project-gallery">
-        <a href="/IMG_2982.jpeg" target="_blank" rel="noopener noreferrer"><img src="/IMG_2982.jpeg" alt="SAM Enterprises completed project photo 1" loading="lazy" /></a>
-        <a href="/IMG_2983.jpeg" target="_blank" rel="noopener noreferrer"><img src="/IMG_2983.jpeg" alt="SAM Enterprises completed project photo 2" loading="lazy" /></a>
-        <a href="/IMG_2984.jpeg" target="_blank" rel="noopener noreferrer"><img src="/IMG_2984.jpeg" alt="SAM Enterprises completed project photo 3" loading="lazy" /></a>
-        <a href="/IMG_2985%20(1).jpeg" target="_blank" rel="noopener noreferrer"><img src="/IMG_2985%20(1).jpeg" alt="SAM Enterprises completed project photo 4" loading="lazy" /></a>
-        <a href="/SAM_Fence_Before_After.jpg" target="_blank" rel="noopener noreferrer"><img src="/SAM_Fence_Before_After.jpg" alt="Fence and gate installation before and after comparison" loading="lazy" /></a>
-      </div>
-    </section>
+   
+<section id="gallery">
+  <h2>Our Work</h2>
+  <p>Explore completed projects and work in progress by SAM ENTERPRISES LLC.</p>
+
+  <div class="project-gallery">
+    {[
+      {
+        name: "Roofing — Catalina Project",
+        photos: [
+          "IMG_2957.jpeg", "IMG_2958.jpeg",
+          "IMG_2982.jpeg", "IMG_2983.jpeg",
+          "IMG_2984.jpeg"
+        ]
+      },
+      {
+        name: "Masonry & Brick Restoration",
+        photos: [
+          "IMG_0945.jpeg", "IMG_0947.jpeg",
+          "IMG_0948.jpeg", "IMG_3410.jpeg",
+          "IMG_3427.jpeg", "IMG_3464.jpeg",
+          "IMG_3465.jpeg", "IMG_3466.jpeg",
+          "IMG_3467.jpeg"
+        ]
+      },
+      {
+        name: "Fences & Gates",
+        photos: ["IMG_3156.jpeg"]
+      },
+      {
+        name: "Exterior Wall Sheathing",
+        photos: [
+          "IMG_0795.jpeg", "IMG_0918.jpeg",
+          "IMG_0921.jpeg"
+        ]
+      }
+    ].map((project) => (
+      <details class="project-category">
+        <summary>{project.name}</summary>
+        <div class="project-photos">
+          {project.photos.map((photo) => (
+            <a href={`/${photo}`} target="_blank" rel="noopener noreferrer">
+              <img src={`/${photo}`} alt={`${project.name} construction project`} loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <style>
+    .project-gallery {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .project-category {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .project-category summary {
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .project-photos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .project-photos img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    @media (max-width: 600px) {
+      .project-photos {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</section>
+
 
     <section class="about" id="about">
       <h2>Local Work. Personal Attention.</h2>
