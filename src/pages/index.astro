@@ -184,11 +184,135 @@
       <p>We focus on understanding your project, explaining the scope of work, and paying attention to the details.</p>
     </section>
 
-    <section>
-      <h2>Serving the New Orleans Area</h2>
-      <p>Have a repair or improvement in mind? Send a few photos and a short description of your project so we can discuss the work you need.</p>
-      <a class="button" href="mailto:Steven@samgc.com?subject=Project%20Inquiry">Email Us About Your Project</a>
-    </section>
+    
+<section id="contact" class="inquiry-section">
+  <h2>Request a Free Estimate</h2>
+  <p>
+    Tell SAM ENTERPRISES LLC about your project.
+    Include photos so we can better understand the work.
+  </p>
+
+  <form
+    class="inquiry-form"
+    action="https://formspree.io/f/REPLACE_WITH_FORM_ID"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <label for="customer-name">Full Name *</label>
+    <input
+      id="customer-name"
+      name="name"
+      type="text"
+      autocomplete="name"
+      required
+    />
+
+    <label for="customer-email">Email Address *</label>
+    <input
+      id="customer-email"
+      name="email"
+      type="email"
+      autocomplete="email"
+      required
+    />
+
+    <label for="customer-phone">Phone Number *</label>
+    <input
+      id="customer-phone"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      required
+    />
+
+    <label for="project-type">Project Type *</label>
+    <select id="project-type" name="project_type" required>
+      <option value="">Select a service</option>
+      <option>Renovations &amp; Repairs</option>
+      <option>Fences &amp; Gates</option>
+      <option>Painting &amp; Drywall</option>
+      <option>Tile &amp; Flooring</option>
+      <option>Exterior Improvements</option>
+      <option>Roofing &amp; Roof Repairs</option>
+      <option>Welding &amp; Metal Repairs</option>
+      <option>Masonry &amp; Brick Restoration</option>
+      <option>Other</option>
+    </select>
+
+    <label for="project-message">Project Description *</label>
+    <textarea
+      id="project-message"
+      name="message"
+      rows="6"
+      minlength="20"
+      maxlength="5000"
+      placeholder="Describe the work, project location, approximate measurements, and preferred timeline."
+      required
+    ></textarea>
+
+    <label for="project-photos">
+      Project Photos (optional, maximum 5)
+    </label>
+    <input
+      id="project-photos"
+      name="photos"
+      type="file"
+      accept="image/jpeg,image/png,image/webp"
+      multiple
+      aria-describedby="photo-help"
+    />
+    <small id="photo-help">
+      JPG, PNG or WebP. Maximum 10 MB per photo.
+    </small>
+
+    <p id="photo-error" role="alert" hidden></p>
+
+    <button class="button" type="submit">
+      Send Project Request
+    </button>
+  </form>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>(
+    ".inquiry-form"
+  );
+  const photos = document.querySelector<HTMLInputElement>(
+    "#project-photos"
+  );
+  const error = document.querySelector<HTMLElement>(
+    "#photo-error"
+  );
+
+  form?.addEventListener("submit", (event) => {
+    if (!photos || !error) return;
+
+    error.hidden = true;
+    error.textContent = "";
+
+    const files = Array.from(photos.files ?? []);
+    const allowed = [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ];
+
+    if (
+      files.length > 5 ||
+      files.some(
+        (file) =>
+          file.size > 10 * 1024 * 1024 ||
+          !allowed.includes(file.type)
+      )
+    ) {
+      event.preventDefault();
+      error.textContent =
+        "Please select up to 5 JPG, PNG or WebP photos, each under 10 MB.";
+      error.hidden = false;
+    }
+  });
+</script>
+
   </main>
 
   <footer>
