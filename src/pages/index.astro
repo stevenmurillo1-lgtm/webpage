@@ -1,9 +1,10 @@
-import { Image } from "astro";
+---
+import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 
 const thumbnails = import.meta.glob<ImageMetadata>(
-["../../public/.{jpeg,png}", "../../public/fonts/IMG_.jpeg"],
-{ eager: true, import: "default" },
+  ["../../public/*.{jpeg,png}", "../../public/fonts/IMG_*.jpeg"],
+  { eager: true, import: "default" },
 );
 
 const fenceComparison = "077556FD-4725-4D69-BB76-1187CD879C1C.png";
@@ -11,20 +12,62 @@ const condenserComparison = "8CF66D22-2559-4941-93DD-C92C91FE39F1.png";
 const dryerVentComparison = "E04E9ADB-A009-41A5-8961-CE8F5773530F.png";
 const metalFence = ["IMG_3156.jpeg", "fonts/IMG_1186.jpeg", "fonts/IMG_1187.jpeg", "fonts/IMG_2678.jpeg"];
 const captions: Record<string, string> = {
-[fenceComparison]: "Custom fence and gate, before and after",
-[condenserComparison]: "Condenser guard upgrade, before and after",
-[dryerVentComparison]: "Dryer vent repair, before and after",
-"IMG_3156.jpeg": "Custom fence and gate, before and after",
-"IMG_2957.jpeg": "Existing roof during tear-off",
-"IMG_2958.jpeg": "Tear-off and roof inspection",
-"IMG_2982.jpeg": "New shingles and roof vent",
-"IMG_2983.jpeg": "New shingles along the ridge",
-"IMG_2984.jpeg": "Completed shingle roof",
-"IMG_2985 (1).jpeg": "Completed shingle roof, second view",
+  [fenceComparison]: "Custom fence and gate, before and after",
+  [condenserComparison]: "Condenser guard upgrade, before and after",
+  [dryerVentComparison]: "Dryer vent repair, before and after",
+  "IMG_3156.jpeg": "Custom fence and gate, before and after",
+  "IMG_2957.jpeg": "Existing roof during tear-off",
+  "IMG_2958.jpeg": "Tear-off and roof inspection",
+  "IMG_2982.jpeg": "New shingles and roof vent",
+  "IMG_2983.jpeg": "New shingles along the ridge",
+  "IMG_2984.jpeg": "Completed shingle roof",
+  "IMG_2985 (1).jpeg": "Completed shingle roof, second view",
 };
 
+const services = [
+  {
+    name: "Renovations & Repairs",
+    desc: "Carpentry, framing, and property improvements.",
+    photos: ["IMG_0795.jpeg", "IMG_0918.jpeg", "IMG_0919.jpeg", "IMG_0921.jpeg"],
+  },
+  {
+    name: "Fences & Gates",
+    desc: "Wood and metal fences, custom gates, and repairs.",
+    photos: [fenceComparison, ...metalFence, "fonts/IMG_1188.jpeg"],
+  },
+  {
+    name: "Painting & Drywall",
+    desc: "Interior and exterior painting, patching, and finishing.",
+    photos: [],
+  },
+  {
+    name: "Tile & Flooring",
+    desc: "Tile, vinyl plank, and flooring repairs.",
+    photos: [],
+  },
+  {
+    name: "Exterior Improvements",
+    desc: "Siding, sheathing, fascia, and exterior repairs.",
+    photos: [dryerVentComparison, "IMG_0918.jpeg", "IMG_0919.jpeg", "IMG_0921.jpeg"],
+  },
+  {
+    name: "Roofing & Roof Repairs",
+    desc: "Shingle installation, leak repairs, and roofing maintenance.",
+    photos: ["IMG_2957.jpeg", "IMG_2958.jpeg", "IMG_2982.jpeg", "IMG_2983.jpeg", "IMG_2984.jpeg", "IMG_2985 (1).jpeg"],
+  },
+  {
+    name: "Welding & Metal Repairs",
+    desc: "Custom metalwork and repairs for gates, fencing, and guards.",
+    photos: [condenserComparison, ...metalFence],
+  },
+  {
+    name: "Masonry & Brick Restoration",
+    desc: "Brickwork, tuckpointing, and chimney repairs.",
+    photos: ["IMG_0944.jpeg", "IMG_0945.jpeg", "IMG_0947.jpeg", "IMG_0948.jpeg", "IMG_3410.jpeg", "IMG_3427.jpeg", "IMG_3428.jpeg", "IMG_3464.jpeg", "IMG_3465.jpeg", "IMG_3466.jpeg", "IMG_3467.jpeg"],
+  },
+];
+---
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -119,89 +162,88 @@ const captions: Record<string, string> = {
       <a class="button" href="#contact">Request a Free Estimate</a>
     </section>
 
-<section id="services">
-  <h2>Services &amp; Our Work</h2>
-  <p class="intro">Choose a service to see project photos or ask about your job.</p>
-  <div class="services">
-    {services.map((service) => (
-      <details class="service">
-        <summary>
-          <strong class="service-name">{service.name}</strong>
-          <span class="service-description">{service.desc}</span>
-          <span class="service-action">{service.photos.length ? `View photos (${service.photos.length})` : "Service details"}</span>
-        </summary>
-        <div class="gallery-body">
-          {service.photos.length ? (
-            <div class="gallery">
-              {service.photos.map((photo, index) => {
-                const url = `/${photo.split("/").map(encodeURIComponent).join("/")}`;
-                const caption = captions[photo];
-                const description = caption ?? `${service.name} project photo ${index + 1}`;
-                return (
-                  <figure class:list={{ comparison: caption?.includes("before and after") }}>
-                    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${description} in a new tab`}>
-                      <Image src={thumbnails[`../../public/${photo}`]} width={560} format="webp" alt={description} loading="lazy" decoding="async" />
-                    </a>
-                    {caption && <figcaption>{caption}</figcaption>}
-                  </figure>
-                );
-              })}
+    <section id="services">
+      <h2>Services &amp; Our Work</h2>
+      <p class="intro">Choose a service to see project photos or ask about your job.</p>
+      <div class="services">
+        {services.map((service) => (
+          <details class="service">
+            <summary>
+              <strong class="service-name">{service.name}</strong>
+              <span class="service-description">{service.desc}</span>
+              <span class="service-action">{service.photos.length ? `View photos (${service.photos.length})` : "Service details"}</span>
+            </summary>
+            <div class="gallery-body">
+              {service.photos.length ? (
+                <div class="gallery">
+                  {service.photos.map((photo, index) => {
+                    const url = `/${photo.split("/").map(encodeURIComponent).join("/")}`;
+                    const caption = captions[photo];
+                    const description = caption ?? `${service.name} project photo ${index + 1}`;
+                    return (
+                      <figure class:list={{ comparison: caption?.includes("before and after") }}>
+                        <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${description} in a new tab`}>
+                          <Image src={thumbnails[`../../public/${photo}`]} width={560} format="webp" alt={description} loading="lazy" decoding="async" />
+                        </a>
+                        {caption && <figcaption>{caption}</figcaption>}
+                      </figure>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p>Project photos are coming soon. <a href="#contact">Tell us about your project.</a></p>
+              )}
             </div>
-          ) : (
-            <p>Project photos are coming soon. <a href="#contact">Tell us about your project.</a></p>
-          )}
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>Local Work. Personal Attention.</h2>
+      <p>Steven Murillo leads SAM ENTERPRISES LLC and serves the New Orleans area. We take time to understand the job, explain the scope, and pay attention to the details.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Request a Free Estimate</h2>
+      <p class="intro">Tell us what needs work and where the project is located.</p>
+      <form id="estimate-form" action="https://formspree.io/f/maeelzaw" method="POST" enctype="multipart/form-data">
+        <div class="field">
+          <label for="customer-name">Full name</label>
+          <input id="customer-name" name="name" autocomplete="name" required />
         </div>
-      </details>
-    ))}
-  </div>
-</section>
-
-<section class="about" id="about">
-  <h2>Local Work. Personal Attention.</h2>
-  <p>Steven Murillo leads SAM ENTERPRISES LLC and serves the New Orleans area. We take time to understand the job, explain the scope, and pay attention to the details.</p>
-</section>
-
-<section id="contact">
-  <h2>Request a Free Estimate</h2>
-  <p class="intro">Tell us what needs work and where the project is located.</p>
-  <form id="estimate-form" action="https://formspree.io/f/maeelzaw" method="POST" enctype="multipart/form-data">
-    <div class="field">
-      <label for="customer-name">Full name</label>
-      <input id="customer-name" name="name" autocomplete="name" required />
-    </div>
-    <div class="field">
-      <label for="customer-email">Email</label>
-      <input id="customer-email" name="email" type="email" autocomplete="email" required />
-    </div>
-    <div class="field">
-      <label for="customer-phone">Phone</label>
-      <input id="customer-phone" name="phone" type="tel" autocomplete="tel" required />
-    </div>
-    <div class="field">
-      <label for="project-type">Service</label>
-      <select id="project-type" name="project_type" required>
-        <option value="">Choose a service</option>
-        {services.map(({ name }) => <option>{name}</option>)}
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="field full">
-      <label for="project-message">Project details</label>
-      <textarea id="project-message" name="message" rows="4" maxlength="5000" placeholder="Describe the work, project location, and preferred timeline." required></textarea>
-    </div>
-    <div class="field full">
-      <label for="project-photos">Project photos (optional)</label>
-      <input id="project-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="photo-help" />
-      <small id="photo-help" class="hint">Up to five JPG, PNG, or WebP photos, 10 MB each.</small>
-    </div>
-    <div class="form-actions full">
-      <button class="button" type="submit">Send Estimate Request</button>
-      <a class="email-link" href="mailto:steven@samgc.com">Email Steven directly</a>
-    </div>
-    <p class="full" id="request-status" role="status" aria-live="polite"></p>
-  </form>
-</section>
-
+        <div class="field">
+          <label for="customer-email">Email</label>
+          <input id="customer-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="customer-phone">Phone</label>
+          <input id="customer-phone" name="phone" type="tel" autocomplete="tel" required />
+        </div>
+        <div class="field">
+          <label for="project-type">Service</label>
+          <select id="project-type" name="project_type" required>
+            <option value="">Choose a service</option>
+            {services.map(({ name }) => <option>{name}</option>)}
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="project-message">Project details</label>
+          <textarea id="project-message" name="message" rows="4" maxlength="5000" placeholder="Describe the work, project location, and preferred timeline." required></textarea>
+        </div>
+        <div class="field full">
+          <label for="project-photos">Project photos (optional)</label>
+          <input id="project-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="photo-help" />
+          <small id="photo-help" class="hint">Up to five JPG, PNG, or WebP photos, 10 MB each.</small>
+        </div>
+        <div class="form-actions full">
+          <button class="button" type="submit">Send Estimate Request</button>
+          <a class="email-link" href="mailto:steven@samgc.com">Email Steven directly</a>
+        </div>
+        <p class="full" id="request-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </main>
 
   <footer>
@@ -257,6 +299,5 @@ const captions: Record<string, string> = {
       });
     }
   </script>
-
 </body>
 </html>
